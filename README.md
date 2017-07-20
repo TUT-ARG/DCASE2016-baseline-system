@@ -24,8 +24,8 @@ Table of Contents
 7. [Changelog](#7-changelog)
 8. [License](#8-license)
 
-1. Introduction
-===============
+1 Introduction
+================
 This document describes the Python implementation of the baseline systems for the [Detection and Classification of Acoustic Scenes and Events 2016 (DCASE2016) challenge](http://www.cs.tut.fi/sgn/arg/dcase2016/) **[tasks 1](#11-acoustic-scene-classification)** and **[task 3](#12-sound-event-detection)**. The challenge consists of four tasks:
 
 1. [Acoustic scene classification](http://www.cs.tut.fi/sgn/arg/dcase2016/task-acoustic-scene-classification)
@@ -47,7 +47,7 @@ The acoustic features include MFCC static coefficients (with 0th coefficient), d
 
 The acoustic features include MFCC static coefficients (0th coefficient omitted), delta coefficients and acceleration coefficients. The system has a binary classifier for each sound event class included. For the classifier, two acoustic models are trained from the mixture signals: one with positive examples (target sound event active) and one with negative examples (target sound event non-active). The classification is done between these two models as likelihood ratio. Post-processing is applied to get sound event detection output. 
 
-2. Installation
+2 Installation
 ===============
 
 The systems are developed for [Python 2.7.0](https://www.python.org/). Currently, the baseline system is tested only with Linux operating system. 
@@ -73,7 +73,7 @@ PyYAML is required for handling the configuration files.
 
 Librosa is required for the feature extraction.
 
-3. Usage
+3 Usage
 ========
 
 For each task there is separate executable (.py file):
@@ -105,36 +105,36 @@ To run the system in this mode:
 `python task1_scene_classification.py -challenge`.
 
 
-4. System blocks
+4 System blocks
 ================
 
 The system implements following blocks:
 
-1. Dataset initialization 
+1 Dataset initialization 
   - Downloads the dataset from the Internet if needed
   - Extracts the dataset package if needed
   - Makes sure that the meta files are appropriately formated
 
-2. Feature extraction (`do_feature_extraction`)
+2 Feature extraction (`do_feature_extraction`)
   - Goes through all the training material and extracts the acoustic features
   - Features are stored file-by-file on the local disk (pickle files)
 
-3. Feature normalization (`do_feature_normalization`)
+3 Feature normalization (`do_feature_normalization`)
   - Goes through the training material in evaluation folds, and calculates global mean and std of the data.
   - Stores the normalization factors (pickle files)
 
-4. System training (`do_system_training`)
+4 System training (`do_system_training`)
   - Trains the system
   - Stores the trained models and feature normalization factors together on the local disk (pickle files)
 
-5. System testing (`do_system_testing`)
+5 System testing (`do_system_testing`)
   - Goes through the testing material and does the classification / detection 
   - Stores the results (text files)
 
-6. System evaluation (`do_system_evaluation`)
+6 System evaluation (`do_system_evaluation`)
   - Reads the ground truth and the output of the system and calculates evaluation metrics
 
-5. System evaluation
+5 System evaluation
 ====================
 
 ## Task 1 - Acoustic scene classification
@@ -286,7 +286,7 @@ Detailed description of metrics can be found from [DCASE2016 website](http://www
 | **Average**           | **1.62**    | **2.9 %**   |
 
 
-6. System parameters
+6 System parameters
 ====================
 All the parameters are set in `task1_scene_classification.yaml`, and `task3_sound_event_detection_in_real_life_audio.yaml`.
 
@@ -494,7 +494,7 @@ This section contains the sound event detection related parameters (used in `tas
 `minimum_event_gap: 0.1`
 : Minimum gap (in seconds) between events from same event class in the output. Consecutive events (event with same event label) having shorter gaps between them than set parameter are merged together.
 
-7. Changelog
+7 Changelog
 ============
 #### 1.2 / 2016-11-10
 * Added evaluation in challenge mode for task 1
@@ -505,7 +505,7 @@ This section contains the sound event detection related parameters (used in `tas
 #### 1.0 / 2016-02-08
 * Initial commit
 
-8. License
+8 License
 ==========
 
 See file [EULA.pdf](EULA.pdf)
